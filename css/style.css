@@ -214,10 +214,10 @@ img {
 }
 
 .hero-button {
-	position: absolute;
 	width: 215px;
 	height: 50px;
-	margin-top: 350px;
+	margin-left: auto;
+	margin-right: auto;
 	background: var(--second-text-color);
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 	border: 0;
@@ -631,15 +631,8 @@ address {
 	gap: 30px;
 }
 
-
-
-/* .gallery-item:hover,
+.gallery-item:hover,
 .gallery-item:focus{
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-} */
-
-.work-list-link:hover,
-.work-list-link:focus{
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -661,6 +654,7 @@ address {
 	height: 405px;
 	outline: 1px solid #EEEEEE;
 	border-top: none;
+	position: relative;
 }
 
 .gallery-item h2 {
@@ -677,4 +671,46 @@ address {
 	line-height: 30px;
 	letter-spacing: 0.03em;
 	color: var(--first-text-color);
+}
+
+.product-overlay{
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	background-color: rgba(32, 148, 243, 0.9);
+	height: 100%;
+	padding: 63px 24px;
+	opacity: 0;
+}
+
+.product-overlay:hover{
+	opacity: 1;
+}
+
+.backdrop{
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+
+}
+
+.backdrop{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #ffffff;
+}
+
+.is-hidden{
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: 1;
+
 }
