@@ -23,6 +23,9 @@ div {
 	margin: 0;
 }
 
+button{
+	border: none;
+}
 body,
 footer,
 header,
@@ -115,6 +118,7 @@ img {
 	letter-spacing: 0.02em;
 	color: var(--second-text-color);
 	outline: 0;
+
 }
 
 .contacts-container{
@@ -222,7 +226,8 @@ img {
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 	border: 0;
 	border-radius: 4px;
-	color: var(--four-text-color)
+	color: var(--four-text-color);
+	cursor: pointer;
 }
 
 .hero-button:hover,
@@ -324,10 +329,33 @@ img {
 
 .main-ourwork-li {
 	gap: 30px;
+	position: relative;
 }
 
 .main-ourwork-li:not(:first-child) {
 	margin-left: 30px;
+}
+
+.ourwork-description{
+	position: absolute;
+	width: 370px;
+	height: 70px;	
+	background: rgba(47, 48, 58, 0.8);
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ourwork-description p{
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	text-align: center;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	color: var(--four-text-color)
 }
 
 .ourteam-container {
@@ -637,16 +665,25 @@ address {
 }
 
 .gallery-wrapper {
+	position: relative;
+	z-index: 2;
 	display: flex;
 	margin-left: 25px;
 	flex-direction: column;
 	justify-content: center;
 	width: 322px;
 	height: 111px;
+
 }
 
-.work-list-link{
-	display: block;
+.work-list-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item:hover .product-overlay{
+	transform: translateY(0%);
 }
 
 .gallery-item {
@@ -655,6 +692,7 @@ address {
 	outline: 1px solid #EEEEEE;
 	border-top: none;
 	position: relative;
+	overflow: hidden;
 }
 
 .gallery-item h2 {
@@ -670,7 +708,6 @@ address {
 	font-size: 16px;
 	line-height: 30px;
 	letter-spacing: 0.03em;
-	color: var(--first-text-color);
 }
 
 .product-overlay{
@@ -678,39 +715,68 @@ address {
 	display: block;
 	top: 0;
 	left: 0;
+	height: 294px;
 	background-color: rgba(32, 148, 243, 0.9);
-	height: 100%;
 	padding: 63px 24px;
-	opacity: 0;
+	transform: translateY(100%);
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	overflow: hidden;
 }
 
-.product-overlay:hover{
-	opacity: 1;
+.product-overlay-text{
+	color: var(--four-text-color);
+}
+
+.gallery-item:hover .gallery-wrapper{
+	transform: translateY(0%);
 }
 
 .backdrop{
 	width: 100%;
 	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: rgba(0, 0, 0, 0.5);
-
+	transition: scale 5000ms;
 }
 
-.backdrop{
-	width: 100px;
-	height: 100px;
-	position: absolute;
+.modal{
+	position: fixed;
+	width: 530px;
+	height: 580px;	
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
-	background: #ffffff;
-}
+	transform: translate(-50%, -50%) scale(1);
+	background: var(--four-text-color);
+	transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	
+ 	}
+
 
 .is-hidden{
 	opacity: 0;
 	visibility: hidden;
-	pointer-events: 1;
+	pointer-events: none;
+}
 
+.backdrop.is-hidden .modal{
+	transform: translate(-50%, -50%) scale(0.5);
+	transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close-button{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: var(--four-text-color);
+	cursor: pointer;
+}
+
+.close-button:hover{
+	background-color: var(--second-text-color);
 }
